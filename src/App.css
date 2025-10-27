@@ -99,3 +99,9 @@ h4 {
 }
 
 /* proffessional laa mathu da */
+
+
+/* Preview modal tweaks */
+.preview-video {
+  max-height: 70vh;
+}

@@ -3,17 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-  "axios": "^1.7.7",
-  "react": "^18.2.0",
-  "react-dom": "^18.2.0",
-  "react-scripts": "5.0.1",
-  "web-vitals": "^2.1.4",
-  "three": "0.158.0",
-  "@react-three/fiber": "8.13.0",
-  "@react-three/drei": "9.58.1",
-  "react-speech-recognition": "^3.10.0"
-}
-,
+    "@react-three/drei": "^10.8.0",
+    "@react-three/fiber": "^9.0.0",
+    "axios": "^1.8.6",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-scripts": "^5.0.2",
+    "react-speech-recognition": "^4.0.0",
+    "three": "^0.165.0",
+    "web-vitals": "^3.3.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -39,8 +38,20 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.13"
+    "autoprefixer": "^11.1.0",
+    "postcss": "^8.5.18",
+    "tailwindcss": "^4.2.0"
+  },
+  "description": "This project was bootstrapped with Create React App.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ROHIT05-CODER/grocery_ai_assistant.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ROHIT05-CODER/grocery_ai_assistant/issues"
   }
 }

@@ -13,6 +13,8 @@ function App() {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [speaking, setSpeaking] = useState(false); // ✅ avatar mouth control
+  const [showPreview, setShowPreview] = useState(false);
+  const [previewItem, setPreviewItem] = useState(null);
 
   const api = axios.create({
     baseURL: "https://grocery-ai-backend.onrender.com/api",
@@ -31,6 +33,17 @@ function App() {
     setSpeaking(true);
     speech.onend = () => setSpeaking(false);
     window.speechSynthesis.speak(speech);
+  };
+
+  // 🔎 Preview video handlers
+  const handlePreview = (item) => {
+    setPreviewItem(item);
+    setShowPreview(true);
+  };
+
+  const closePreview = () => {
+    setShowPreview(false);
+    setTimeout(() => setPreviewItem(null), 300);
   };
 
   // 🔎 Search items
@@ -225,6 +238,12 @@ function App() {
                   >
                     ➕ வண்டியில் சேர்
                   </button>
+                  <button
+                    onClick={() => handlePreview(item)}
+                    style={Object.assign({}, btnStyle("#2196F3"), { marginLeft: 8 })}
+                  >
+                    ▶️ பார்வை
+                  </button>
                 </li>
               ))}
             </ul>
@@ -308,5 +327,36 @@ function App() {
     </div>
   );
 }
+
+
+  // Preview Modal JSX
+  const PreviewModal = () => {
+    if (!showPreview || !previewItem) return null;
+    return (
+      <div style={{
+        position: 'fixed', top:0, left:0, right:0, bottom:0, display:'flex',
+        alignItems:'center', justifyContent:'center', backgroundColor:'rgba(0,0,0,0.6)',
+        zIndex: 9999,
+      }}>
+        <div style={{ position:'relative', width: '80%', maxWidth: 720, borderRadius: 8, overflow: 'hidden', background:'#000' }}>
+          <button onClick={closePreview} style={{ position:'absolute', top:8, right:8, zIndex:10000, background:'#fff', border:'none', borderRadius:4, padding:'6px 8px' }}>Close</button>
+          <video
+            src="/videos/small-video.mp4"
+            style={{ width:'100%', height: '100%', objectFit: 'cover', display:'block' }}
+            autoPlay
+            muted
+            controls
+            playsInline
+            loop
+          />
+          <div style={{ padding: 12, color:'#fff', background:'#111' }}>
+            <b style={{ fontSize: 18 }}>{previewItem['Item Name']}</b>
+            <div>₹{previewItem['Price (₹)']}</div>
+            <div style={{ marginTop:6 }}>{previewItem.Description}</div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
 export default App;
